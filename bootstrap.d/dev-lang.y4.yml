@@ -69,6 +69,7 @@ tools:
       - args: ['make', '-j@PARALLELISM@']
     install:
       - args: ['make', 'install']
+        isolate_network: false
 
 packages:
   - name: python

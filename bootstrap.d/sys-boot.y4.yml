@@ -19,6 +19,7 @@ sources:
       - cross-toolchain
     regenerate:
       - args: ['./bootstrap']
+        isolate_network: false
         environ:
           NOCONFIGURE: 'yes'
 
