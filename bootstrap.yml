@@ -557,6 +557,8 @@ container:
     - bc
     # Used by binutils in the build process
     - bison
+    # Used by epiphany
+    - blueprint-compiler
     # Contains gcc and g++
     - build-essential
     # Used by several packages
