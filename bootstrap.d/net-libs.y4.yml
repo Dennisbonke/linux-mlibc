@@ -1,7 +1,6 @@
 packages:
   - name: glib-networking
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
     metadata:
       summary: Network-related giomodules for glib
       description: This package contains network related gio modules for GLib.
@@ -12,8 +11,8 @@ packages:
     source:
       subdir: 'ports'
       git: 'https://gitlab.gnome.org/GNOME/glib-networking.git'
-      tag: '2.70.0'
-      version: '2.70.0'
+      tag: '2.72.2'
+      version: '2.72.2'
     tools_required:
       - cross-toolchain
       - virtual: pkgconfig-for-target
@@ -31,7 +30,6 @@ packages:
         - '--cross-file'
         - '@SOURCE_ROOT@/scripts/meson-@OPTION:arch-triple@.cross-file'
         - '--prefix=/usr'
-        #- '--libdir=lib'
         - '--buildtype=debugoptimized'
         - '-Dgnutls=enabled'
         - '-Dopenssl=disabled'
@@ -45,10 +43,9 @@ packages:
       - args: ['ninja', 'install']
         environ:
           DESTDIR: '@THIS_COLLECT_DIR@'
-    # xbps broke?
-    # scripts:
-    #     post_install:
-    #       - args: ['gio-querymodules', '/usr/lib/gio/modules']
+    scripts:
+        post_install:
+          - args: ['gio-querymodules', '/usr/lib/gio/modules']
 
   - name: gnutls
     architecture: '@OPTION:arch@'
