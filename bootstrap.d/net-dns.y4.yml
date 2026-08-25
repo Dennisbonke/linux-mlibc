@@ -1,7 +1,6 @@
 packages:
   - name: libidn2
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
     metadata:
       summary: An implementation of the IDNA2008 specifications (RFCs 5890, 5891, 5892, 5893)
       description: This package provides a library for internationalized string handling based on standards from the Internet Engineering Task Force (IETF)'s IDN working group, designed for internationalized domain names.
@@ -16,8 +15,11 @@ packages:
       version: '2.3.2'
       tools_required:
         - cross-toolchain
+      sources_required:
+        - gnulib
       regenerate:
-        - args: ['./bootstrap']
+        - args: ['python3', '@SOURCE_ROOT@/scripts/checkout-gnulib.py', '@SOURCE_ROOT@/ports/gnulib']
+        - args: ['./bootstrap', '--skip-po']
         - args: ['autoreconf', '-fvi']
     tools_required:
       - cross-toolchain
