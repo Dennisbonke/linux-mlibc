@@ -85,6 +85,20 @@ sources:
     branch: 'trunk'
     commit: '9d6a92ab19a57140f1e3ecc6668014d7f46094b6'
 
+  - name: libsmarter
+    subdir: 'ports'
+    git: 'https://github.com/managarm/libsmarter.git'
+    branch: 'master'
+    rolling_version: true
+    version: '0.0pl@ROLLING_ID@'
+
+  - name: frigg
+    subdir: 'ports'
+    git: 'https://github.com/managarm/frigg.git'
+    branch: 'master'
+    rolling_version: true
+    version: '0.0pl@ROLLING_ID@'
+
 tools:
   - name: host-iasl
     labels: [aarch64, riscv64]
@@ -240,6 +254,82 @@ tools:
       - args: ['make']
     install:
       - args: ['make', 'install', 'PREFIX=@PREFIX@']
+
+  - name: host-linux-headers
+    architecture: noarch
+    from_source: linux
+    revision: 1
+    configure:
+      - args: ['cp', '-Tr', '@THIS_SOURCE_DIR@', '.']
+    compile:
+      - args: |
+          LINUX_ARCH="@OPTION:arch@"
+          case "$LINUX_ARCH" in
+            "aarch64")
+              LINUX_ARCH="arm64"
+              ;;
+            "riscv64")
+              LINUX_ARCH="riscv"
+              ;;
+          esac
+          make ARCH="$LINUX_ARCH" headers_install
+      - args: ['find', 'usr/include', '-type', 'f', '!', '-name', '*.h', '-delete']
+    install:
+      # Sometimes, xbstrap does not clean collect dirs.  We don't want those
+      # cases to break.  If we don't do this special handling, and don't pass
+      # -T to GNU cp below, it might be the case that cp installs linux-headers
+      # into /usr/include/include or /usr/src/linux-headers/include.  GNU cp
+      # has -T, which disables this behavior, and instead lets us be specific
+      # about what we want our destination directory name to be.  This,
+      # however, also merges directories, so we want to clear any existing
+      # files.
+      - args: ['rm', '-rf', '@PREFIX@/src/linux-headers']
+      - args: ['rm', '-rf', '@PREFIX@/include']
+      - args: ['mkdir', '-p', '@PREFIX@/src']
+      - args: ['cp', '-Tr', 'usr/include', '@PREFIX@/include']
+      - args: ['cp', '-Tr', 'usr/include', '@PREFIX@/src/linux-headers']
+
+  - name: host-frigg
+    architecture: noarch
+    from_source: frigg
+    tools_required:
+      - virtual: pkgconfig-for-host
+        program_name: host-pkg-config
+    revision: 1
+    configure:
+      - args:
+        - 'meson'
+        - '--native-file'
+        - '@SOURCE_ROOT@/scripts/meson.native-file'
+        - '--prefix=@PREFIX@'
+        - '-Dfrigg_no_install=false'
+        # We don't have a test stage in frigg
+        - '-Dbuild_tests=disabled'
+        - '@THIS_SOURCE_DIR@'
+    compile:
+      - args: ['ninja']
+    install:
+      - args: ['ninja', 'install']
+
+  - name: host-libsmarter
+    architecture: noarch
+    from_source: libsmarter
+    tools_required:
+      - virtual: pkgconfig-for-host
+        program_name: host-pkg-config
+    revision: 1
+    configure:
+      - args:
+        - 'meson'
+        - 'setup'
+        - '--native-file'
+        - '@SOURCE_ROOT@/scripts/meson.native-file'
+        - '--prefix=@PREFIX@'
+        - '@THIS_SOURCE_DIR@'
+    compile:
+      - args: ['ninja']
+    install:
+      - args: ['ninja', 'install']
 
 packages:
   - name: base-files
