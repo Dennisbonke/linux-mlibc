@@ -21,7 +21,7 @@ packages:
       - cross-toolchain
     pkgs_required:
       - mlibc
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -60,7 +60,7 @@ packages:
       - freetype
       - libiconv
       - libxml
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -101,7 +101,7 @@ packages:
       - glu
       - libxi
       - mesa
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'cmake'
@@ -157,7 +157,7 @@ packages:
       - bzip2
       - libpng
       - zlib
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -187,7 +187,7 @@ packages:
       - mlibc
       - glu
       - mesa
-    revision: 1
+    revision: 2
     configure:
       # These two seds lets the build system respect the GCC variable
       - args: ['sed', '-i', 's/CC = cc/CC = $(GCC)/g', '@THIS_SOURCE_DIR@/config/Makefile.linux']
@@ -220,7 +220,7 @@ packages:
       - mlibc
       - libstdc++
       - mesa
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'meson'
@@ -342,7 +342,7 @@ packages:
       - wayland
       - wayland-protocols
       - zlib
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'meson'
@@ -448,7 +448,7 @@ packages:
     pkgs_required:
       - mlibc
       - glib
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'meson'
@@ -504,7 +504,7 @@ packages:
       - icu
       - libgcc
       - zlib
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'meson'
@@ -562,7 +562,7 @@ packages:
       - libjpeg-turbo
       - libtiff
       - zlib
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -609,7 +609,7 @@ packages:
       - gstreamer
       - libtool
       - libvorbis
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -649,7 +649,7 @@ packages:
         program_name: host-pkg-config
     pkgs_required:
       - mlibc
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'meson'
@@ -688,7 +688,7 @@ packages:
       - cross-toolchain
     pkgs_required:
       - mlibc
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -724,7 +724,7 @@ packages:
       - libx11
       - mesa
       - xorg-proto
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'meson'
@@ -761,7 +761,7 @@ packages:
       - mlibc
       - libx11
       - libxext
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'meson'
@@ -806,7 +806,7 @@ packages:
         triple: '@OPTION:arch-triple@'
     pkgs_required:
       - mlibc
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'cmake'
@@ -849,7 +849,7 @@ packages:
       - cross-toolchain
     pkgs_required:
       - mlibc
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -889,7 +889,7 @@ packages:
     pkgs_required:
       - mlibc
       - zlib
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -930,7 +930,7 @@ packages:
       - mlibc
       - libogg
       - libvorbis
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -979,7 +979,7 @@ packages:
       - xz-utils
       - zlib
       - zstd
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -1026,7 +1026,7 @@ packages:
     pkgs_required:
       - mlibc
       - libogg
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -1066,7 +1066,7 @@ packages:
       - libpng
       - libtiff
       # - sdl2
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -1116,7 +1116,7 @@ packages:
       - wayland-protocols
       - zlib
       - zstd
-    revision: 1
+    revision: 2
     configure:
       - args: ['cp', '@SOURCE_ROOT@/scripts/meson-@OPTION:arch-triple@.cross-file', 'meson.cross-file']
       - args:
@@ -1179,7 +1179,7 @@ packages:
       - cross-toolchain
     pkgs_required:
       - mlibc
-    revision: 1
+    revision: 2
     configure:
       - args:
         - '@THIS_SOURCE_DIR@/configure'
@@ -1214,7 +1214,7 @@ packages:
       - cross-cmake
     pkgs_required:
       - mlibc
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'cmake'

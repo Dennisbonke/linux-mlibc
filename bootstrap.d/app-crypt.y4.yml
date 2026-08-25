@@ -54,7 +54,7 @@ packages:
       - libffi
       - libtasn
       - systemd
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'meson'
@@ -98,7 +98,7 @@ packages:
       - openssl
       - qt5compat
       - qtbase6
-    revision: 1
+    revision: 2
     configure:
       - args:
         - 'cmake'
