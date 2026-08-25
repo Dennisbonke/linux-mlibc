@@ -273,7 +273,7 @@ packages:
 
   - name: boost
     labels: [aarch64, riscv64]
-    architecture: noarch
+    architecture: '@OPTION:arch@'
     metadata:
       summary: Boost development headers and libraries
       description: This package provides the Boost headers and libraries.
@@ -299,7 +299,7 @@ packages:
       - xz-utils
       - zlib
       - zstd
-    revision: 1
+    revision: 2
     configure:
       # boost does not seem to support out-of-tree builds, so we just copy
       # the source tree into the build directory instead
