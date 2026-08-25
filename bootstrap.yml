@@ -368,7 +368,7 @@ packages:
       subdir: meta-sources
       version: '1.0'
     default: true
-    revision: 4
+    revision: 5
     build:
       - args: |
           mkdir -pv @THIS_COLLECT_DIR@/usr/{,local/}{bin,include,lib,sbin,src}
@@ -376,6 +376,7 @@ packages:
           ln -sfv usr/lib @THIS_COLLECT_DIR@/lib
           ln -sfv usr/sbin @THIS_COLLECT_DIR@/sbin
           mkdir -pv @THIS_COLLECT_DIR@/{boot,home,mnt,opt,srv}
+          mkdir -pv @THIS_COLLECT_DIR@/home/user
           mkdir -pv @THIS_COLLECT_DIR@/etc/{opt,sysconfig}
           mkdir -pv @THIS_COLLECT_DIR@/lib/firmware
           mkdir -pv @THIS_COLLECT_DIR@/media/{floppy,cdrom}
@@ -400,6 +401,7 @@ packages:
           cp @THIS_SOURCE_DIR@/post-boot-fixup.sh @THIS_COLLECT_DIR@/root
           install --directory --mode=0755 @THIS_COLLECT_DIR@/etc/bash_completion.d
           touch @THIS_COLLECT_DIR@/{boot,home,mnt,opt,root,srv,tmp}/.keep
+          touch @THIS_COLLECT_DIR@/home/user/.keep
           touch @THIS_COLLECT_DIR@/etc/{opt,sysconfig}/.keep
           touch @THIS_COLLECT_DIR@/etc/bash_completion.d/.keep
           touch @THIS_COLLECT_DIR@/lib/firmware/.keep
