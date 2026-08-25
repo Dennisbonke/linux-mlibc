@@ -446,19 +446,20 @@ packages:
 
   - name: gst-plugins-good
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
     metadata:
-      # summary: Basepack of plugins for GStreamer
-      # description: The GStreamer Base Plug-ins is a well-groomed and well-maintained collection of GStreamer plug-ins and elements, spanning the range of possible types of elements one would want to write for GStreamer.
-      spdx: 'LGPL-2.0-or-later GPL-2.0-or-later'
+      summary: Basepack of plugins for GStreamer
+      description: The GStreamer Good Plug-ins is a set of plug-ins considered by the GStreamer developers to have good quality code, correct functionality, and the preferred license (LGPL for the plug-in code, LGPL or LGPL-compatible for the supporting library). A wide range of video and audio decoders, encoders, and filters are included.
+      spdx: 'LGPL-2.1-or-later'
       website: 'https://gstreamer.freedesktop.org/'
       maintainer: "Dennis Bonke <dennis@managarm.org>"
       categories: ['media-libs']
     source:
       subdir: 'ports'
-      git: 'https://gitlab.freedesktop.org/gstreamer/gst-plugins-good.git'
-      tag: '1.19.1'
-      version: '1.19.1'
+      url: 'https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.28.1.tar.xz'
+      format: 'tar.xz'
+      extract_path: 'gst-plugins-good-1.28.1'
+      checksum: blake2b:fee7ff060b0281672ffb8f081ea7f656d5813580307b578b9262dca3f153cc24efb6c89f54d3d87da620e5ac220723a43fc1cfe3d56c1abd2450d004e317e030
+      version: '1.28.1'
     tools_required:
       - cross-toolchain
       - virtual: pkgconfig-for-target
@@ -472,6 +473,7 @@ packages:
       - glib
       - gtk+-3
       - gstreamer
+      - gst-plugins-base
       - libjpeg-turbo
       - libpng
       - libsoup
@@ -495,8 +497,9 @@ packages:
         - '--buildtype=debugoptimized'
         - '--wrap-mode=nodownload'
         - '-Dexamples=disabled'
-        - '-Dpackage-origin=https://github.com/no92/linux-mlibc/'
-        - '-Dpackage-name="GStreamer 1.19.1 Linux-mlibc"'
+        - '-Dpackage-origin=https://github.com/managarm/linux-mlibc/'
+        - '-Dpackage-name="GStreamer 1.28.1 Linux-mlibc"'
+        - '-Dv4l2=disabled' # Compilation failure, investigate later
         - '@THIS_SOURCE_DIR@'
     build:
       - args: ['ninja']
