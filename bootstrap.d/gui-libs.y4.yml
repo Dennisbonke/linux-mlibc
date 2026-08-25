@@ -1,7 +1,6 @@
 packages:
   - name: libwpe
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
     source:
       subdir: 'ports'
       git: 'https://github.com/WebPlatformForEmbedded/libwpe.git'
@@ -23,7 +22,6 @@ packages:
         - '--cross-file'
         - '@SOURCE_ROOT@/scripts/meson-@OPTION:arch-triple@.cross-file'
         - '--prefix=/usr'
-        #- '--libdir=lib'
         - '--buildtype=debugoptimized'
         - '-Dbuild-docs=false'
         - '@THIS_SOURCE_DIR@'
