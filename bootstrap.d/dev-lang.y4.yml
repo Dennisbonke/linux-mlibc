@@ -153,7 +153,13 @@ packages:
 
   - name: nasm
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
+    metadata:
+      summary: Groovy little assembler
+      description: NASM (Netwide Assembler) is an 80x86 assembler designed for portability and modularity. It includes a disassembler as well.
+      spdx: 'BSD-2-Clause'
+      website: 'https://www.nasm.us/'
+      maintainer: "Dennis Bonke <dennis@managarm.org>"
+      categories: ['dev-lang']
     source:
       subdir: 'ports'
       url: 'https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/nasm-2.15.05.tar.xz'
