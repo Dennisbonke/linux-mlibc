@@ -2,8 +2,8 @@ sources:
   - name: glib
     subdir: ports
     git: 'https://gitlab.gnome.org/GNOME/glib.git'
-    tag: '2.82.4'
-    version: '2.82.4'
+    tag: '2.88.1'
+    version: '2.88.1'
 
   - name: gnulib
     subdir: ports
@@ -456,7 +456,7 @@ packages:
       - libintl
       - pcre2
       - zlib
-    revision: 2
+    revision: 1
     configure:
       - args:
         - 'meson'
@@ -482,8 +482,8 @@ packages:
           DESTDIR: '@THIS_COLLECT_DIR@'
     scripts:
         post_install:
-          - args: ['glib-compile-schemas /usr/share/glib-2.0/schemas']
-          - args: ['gio-querymodules /usr/lib/gio/modules']
+          - args: ['glib-compile-schemas', '/usr/share/glib-2.0/schemas']
+          - args: ['gio-querymodules', '/usr/lib/gio/modules']
 
   - name: gmp
     architecture: '@OPTION:arch@'
