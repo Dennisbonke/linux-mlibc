@@ -58,7 +58,7 @@ sources:
   - name: mlibc
     git: 'https://github.com/managarm/mlibc.git'
     branch: 'master'
-    commit: '723520a7ba2e5c658c25c6d31a9cf9e63cc8c0ed'
+    commit: 'a7c9bdd9cdfb685f63f8eb257a0e3c27a211dac7'
     rolling_version: true
     version: '0.0pl@ROLLING_ID@'
 
@@ -325,6 +325,36 @@ tools:
         - '--native-file'
         - '@SOURCE_ROOT@/scripts/meson.native-file'
         - '--prefix=@PREFIX@'
+        - '@THIS_SOURCE_DIR@'
+    compile:
+      - args: ['ninja']
+    install:
+      - args: ['ninja', 'install']
+
+  - name: host-mlibc
+    architecture: noarch
+    from_source: mlibc
+    tools_required:
+      - host-freestnd-c-hdrs
+      - host-freestnd-cxx-hdrs
+      - host-linux-headers
+      - host-frigg
+      - host-libsmarter
+      - virtual: pkgconfig-for-host
+        program_name: host-pkg-config
+    revision: 1
+    configure:
+      - args:
+        - 'meson'
+        - 'setup'
+        - '--native-file'
+        - '@SOURCE_ROOT@/scripts/meson.native-file'
+        - '--prefix=@PREFIX@'
+        - '--libdir=lib'
+        - '--buildtype=debugoptimized'
+        - '--wrap-mode=nofallback'
+        - '-Dno_headers=true'
+        - '-Dlinux_kernel_headers=@BUILD_ROOT@/tools/host-linux-headers/src/linux-headers'
         - '@THIS_SOURCE_DIR@'
     compile:
       - args: ['ninja']
