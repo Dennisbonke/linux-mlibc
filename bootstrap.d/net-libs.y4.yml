@@ -147,7 +147,6 @@ packages:
 
   - name: libpsl
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
     metadata:
       summary: C library for the Public Suffix List
       description: This package provides a library for accessing and resolving information from the Public Suffix List (PSL). The PSL is a set of domain names beyond the standard suffixes, such as .com.
@@ -158,12 +157,13 @@ packages:
     source:
       subdir: 'ports'
       git: 'https://github.com/rockdaboot/libpsl.git'
-      tag: '0.21.1'
-      version: '0.21.1'
+      tag: '0.23.3'
+      version: '0.23.3'
       tools_required:
         - cross-toolchain
       regenerate:
         - args: ['./autogen.sh']
+          isolate_network: false
     tools_required:
       - cross-toolchain
     pkgs_required:
