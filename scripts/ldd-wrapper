@@ -5,4 +5,4 @@
 # Unset LD_LIBRARY_PATH to avoid loading Managarm libraries when running host tools.
 unset LD_LIBRARY_PATH
 
-x86_64-managarm-objdump -p $1 | awk '/NEEDED/{print $2" => /usr/lib/"$2}'
+x86_64-linux-mlibc-objdump -p $1 | awk '/NEEDED/{print $2" => /usr/lib/"$2}'
