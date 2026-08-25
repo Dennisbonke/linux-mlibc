@@ -1455,12 +1455,18 @@ packages:
 
   - name: libxslt
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
+    metadata:
+      summary: XSLT libraries and tools
+      description: This package contains XSLT libraries used for extending libxml2 libraries to support XSLT files.
+      spdx: 'MIT'
+      website: 'https://gitlab.gnome.org/GNOME/libxslt'
+      maintainer: "Dennis Bonke <dennis@managarm.org>"
+      categories: ['dev-libs']
     source:
       subdir: ports
       git: 'https://gitlab.gnome.org/GNOME/libxslt.git'
-      tag: 'v1.1.34'
-      version: '1.1.34'
+      tag: 'v1.1.45'
+      version: '1.1.45'
       tools_required:
         - cross-toolchain
       regenerate:
