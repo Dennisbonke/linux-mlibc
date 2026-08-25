@@ -189,12 +189,18 @@ packages:
 
   - name: libsoup
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
+    metadata:
+      summary: https://wiki.gnome.org/Projects/libsoup
+      description: This package is a HTTP client/server library for GNOME. It uses GObject and the GLib main loop to integrate with GNOME applications and it also has an asynchronous API for use in threaded applications.
+      spdx: 'LGPL-2.1-or-later'
+      website: 'https://wiki.gnome.org/Projects/libsoup'
+      maintainer: "Dennis Bonke <dennis@managarm.org>"
+      categories: ['net-libs']
     source:
       subdir: 'ports'
       git: 'https://gitlab.gnome.org/GNOME/libsoup.git'
-      tag: '2.74.2'
-      version: '2.74.2'
+      tag: '2.74.3'
+      version: '2.74.3'
     tools_required:
       - cross-toolchain
       - virtual: pkgconfig-for-target
@@ -215,7 +221,6 @@ packages:
         - '--cross-file'
         - '@SOURCE_ROOT@/scripts/meson-@OPTION:arch-triple@.cross-file'
         - '--prefix=/usr'
-        #- '--libdir=lib'
         - '--buildtype=debugoptimized'
         - '-Dintrospection=disabled'
         - '-Dinstalled_tests=false'
