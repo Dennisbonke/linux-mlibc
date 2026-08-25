@@ -33,7 +33,6 @@ packages:
 
   - name: wpebackend-fdo
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
     source:
       subdir: 'ports'
       git: 'https://github.com/Igalia/WPEBackend-fdo.git'
@@ -58,7 +57,6 @@ packages:
         - '--cross-file'
         - '@SOURCE_ROOT@/scripts/meson-@OPTION:arch-triple@.cross-file'
         - '--prefix=/usr'
-        #- '--libdir=lib'
         - '--buildtype=debugoptimized'
         - '-Dbuild_docs=false'
         - '@THIS_SOURCE_DIR@'
