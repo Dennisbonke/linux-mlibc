@@ -1310,7 +1310,6 @@ packages:
 
   - name: libunistring
     architecture: '@OPTION:arch@'
-    stability_level: 'broken'
     metadata:
       summary: Library for manipulating Unicode and C strings according to Unicode standard
       description: This package provides a library containing functions for manipulating Unicode strings and for manipulating C strings according to the Unicode standard.
@@ -1320,10 +1319,10 @@ packages:
       categories: ['dev-libs']
     source:
       subdir: 'ports'
-      url: 'https://ftpmirror.gnu.org/gnu/libunistring/libunistring-0.9.10.tar.xz'
+      url: 'https://ftpmirror.gnu.org/libunistring/libunistring-1.4.2.tar.xz'
       format: 'tar.xz'
-      extract_path: 'libunistring-0.9.10'
-      version: '0.9.10'
+      extract_path: 'libunistring-1.4.2'
+      version: '1.4.2'
       tools_required:
         - cross-toolchain
       regenerate:
@@ -1340,7 +1339,7 @@ packages:
         - '--prefix=/usr'
         - '--with-sysroot=@SYSROOT_DIR@' # Set libtool's lt_sysroot.
         - '--disable-static'
-        - '--docdir=/usr/share/doc/libunistring-0.9.10'
+        - '--docdir=/usr/share/doc/libunistring-1.4.2'
     build:
       - args: ['make', '-j@PARALLELISM@']
       - args: ['make', 'install']
