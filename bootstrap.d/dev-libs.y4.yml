@@ -3,6 +3,12 @@ import:
   - !managarm
 ---
 sources:
+  - name: appstream
+    subdir: 'ports'
+    git: 'https://github.com/ximion/appstream.git'
+    tag: 'v1.0.4'
+    version: '1.0.4'
+
   - name: glib
     subdir: ports
     git: 'https://gitlab.gnome.org/GNOME/glib.git'
@@ -117,6 +123,43 @@ tools:
         - '@THIS_SOURCE_DIR@'
         environ:
           PKG_CONFIG_LIBDIR: '@BUILD_ROOT@/tools/wayland-scanner/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig'
+    compile:
+      - args: ['ninja']
+    install:
+      - args: ['ninja', 'install']
+
+  - name: host-appstream
+    architecture: noarch
+    from_source: appstream
+    exports_aclocal: true
+    exports_shared_libs: true
+    tools_required:
+      - cross-pkg-config
+      - virtual: pkgconfig-for-host
+        program_name: host-pkg-config
+    revision: 1
+    configure:
+      - args:
+        - 'meson'
+        - 'setup'
+        - '--native-file'
+        - '@SOURCE_ROOT@/scripts/meson.native-file'
+        - '--prefix=@PREFIX@'
+        - '-Dapidocs=false'
+        - '-Ddocs=false'
+        - '-Dcompose=false'
+        - '-Dmaintainer=false'
+        - '-Dstatic-analysis=false'
+        - '-Dstemming=false'
+        - '-Dvapi=false'
+        - '-Dapt-support=false'
+        - '-Dinstall-docs=false'
+        - '-Dgir=false'
+        - '-Dqt=false'
+        - '-Dsystemd=false'
+        - '-Ddocs=false'
+        - '@THIS_SOURCE_DIR@'
+        isolate_network: false
     compile:
       - args: ['ninja']
     install:
